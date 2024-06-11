@@ -1,4 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
+import mdx from '@next/mdx';
 
-export default nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    sassOptions: {
+        includePaths: ["./"],
+    },
+    pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+};
+
+// Import the MDX plugin
+const withMDX = mdx();
+export default withMDX(nextConfig);
