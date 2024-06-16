@@ -1,8 +1,13 @@
-import Postcard from "../components/PostCard";
 import { getPosts } from "@/lib/posts";
-
-export default async function Home() {
-  const posts = await getPosts();
+import Postcard from "@/components/PostCard";
+export default async function Page({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
+  const category = decodeURIComponent(slug);
+  let posts = await getPosts();
+  posts = posts.filter((post: any) => post.meta.category === category);
   return (
     <div className=" my-16">
       {posts.length > 0 ? (

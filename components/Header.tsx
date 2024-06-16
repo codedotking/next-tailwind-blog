@@ -52,8 +52,8 @@ export default function Header() {
         <Link href={"/"}>
           <Image src="/logo.png" alt="logo" width={24} height={24} />
         </Link>
-        <Link href={"/"}>分类</Link>
-        <Link href={"/"}>标签</Link>
+        <Link href={"/category"}>分类</Link>
+        <Link href={"/tag"}>标签</Link>
         <button>{theme === "light" ? lightIcon : darkIcon}</button>
       </nav>
     </header>
