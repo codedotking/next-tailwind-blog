@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/Header";
+import "./globals.css";
+import ProgressBar from "@/components/ProgressBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" disableTransitionOnChange={false}>
           <div className="mx-auto px-4 lg:px-0 lg:mb-0  lg:w-full lg:max-w-3xl  pb-16">
+            <ProgressBar />
             <Header />
             {children}
           </div>

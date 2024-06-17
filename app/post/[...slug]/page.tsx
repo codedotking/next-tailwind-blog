@@ -32,7 +32,10 @@ export default async function Page({
   const mdxPath = `${slug.join("/")}.mdx`;
   const { meta, content } = getPost(mdxPath);
   return (
-    <div className="prose dark:prose-invert max-w-3xl">
+    <div className="prose dark:prose-invert max-w-3xl *:selection:bg-yellow-400
+    
+    
+    *:selection:dark:text-black">
       <div className="">
         <h2>{meta?.title}</h2>
         <div className="flex gap-4 mb-4">
