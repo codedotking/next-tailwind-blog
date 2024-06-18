@@ -1,4 +1,5 @@
 import { getPosts } from "@/lib/posts";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 export default async function Page() {
@@ -8,13 +9,29 @@ export default async function Page() {
     tags.push(...meta.tags);
   });
 
+  // 生成颜色
+  const colors = [
+    "red",
+    "orange",
+    "green",
+    "blue",
+    "indigo",
+    "purple",
+  ];
+
   return (
     <div className=" my-16">
       {posts.length > 0 ? (
         <div className="flex gap-4 flex-wrap">
           {tags.map((tag: string, index: number) => (
             <Link href={`/tag/${tag}`} key={index}>
-              <div className="cursor-pointer shadow-md px-4 py-2 ">{tag}</div>
+              <span
+                style={{ backgroundColor: colors[index % colors.length] }}
+                className={cn(
+                  "text-white py-1 cursor-pointer px-2 rounded-full text-sm"
+                )}>
+                {tag}
+              </span>
             </Link>
           ))}
         </div>

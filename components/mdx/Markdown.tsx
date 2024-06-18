@@ -1,11 +1,17 @@
 import React from "react";
+import "./markdown.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import Code from "./Code";
+import Code from "../Code";
 
-export function CustomMDX(props: { source: string; components?: any }) {
+interface MarkdownProps {
+  source: string;
+  components?: any;
+}
+
+export const Markdown: React.FC<MarkdownProps> = (props) => {
   return (
     <article
-      className="prose dark:prose-invert max-w-3xl  
+      className="markdown prose dark:prose-invert max-w-3xl  
       prose-headings:before:content-['']
       prose-headings:relative
       prose-headings:before:absolute
@@ -32,4 +38,4 @@ export function CustomMDX(props: { source: string; components?: any }) {
       />
     </article>
   );
-}
+};

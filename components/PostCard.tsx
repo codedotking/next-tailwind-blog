@@ -1,28 +1,24 @@
 import React from "react";
 import Link from "next/link";
 
-export default function PostCard({ post }: { post: any }) {
+const PostCard = ({ post }: { post: any }): React.ReactNode => {
   return (
-    // A card to wrap all elements
     <Link href={`/post/${post.slug}`}>
-      <div
-        className=" flex flex-col gap-4 *:first-letter:
-          shadow-slate-200
-           shadow-sm
-      rounded-md  dark:border-white  px-4 py-2 cursor-pointer">
-        {/* <Image src="{post.frontMatter.thumbnail}" alt="postCardImage" /> */}
-        <div className="flex flex-col gap-2">
-          <h2 className=" text-xl font-bold ">{post.meta.title}</h2>
-          <p className=" text-gray-800 dark:text-slate-100">
-            {post.meta.description}
-          </p>
-        </div>
-        <div className=" flex gap-4 text-sm">
-          <h2> 📅 {post.meta.date}</h2>
-          <p>⏰ {post.meta.readTime}</p>
-          <p>字数 {post.meta.words}</p>
+      <div className="flex flex-col bg-zinc-100 dark:bg-zinc-700 p-4 rounded-lg gap-2">
+        <h2 className="text-lg font-bold">{post.meta.title}</h2>
+        <p className="text-zinc-600 dark:text-zinc-300">
+          {post.meta.description}
+        </p>
+        <div className="flex items-center text-zinc-600 dark:text-zinc-300 text-sm mt-2">
+          <span className="mr-2">📅 {post.meta.date}</span>
+          <span>&bull;</span>
+          <span className="ml-2">⏰ {post.meta.readTime}</span>
+          <span>&bull;</span>
+          <span className="ml-2">字数 {post.meta.words}</span>
         </div>
       </div>
     </Link>
   );
-}
+};
+
+export default PostCard;

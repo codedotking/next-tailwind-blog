@@ -7,8 +7,15 @@ export interface Post {
   slug: string;
 }
 
-export async function getPosts(): Promise<Post[]> {
-  const posts: Post[] = [];
+export interface PostDetail {
+  meta: {
+    [key: string]: any;
+  };
+  content?: string;
+}
+
+export async function getPosts(): Promise<PostDetail[]> {
+  const posts: PostDetail[] = [];
   const postsDirectory = path.join(process.cwd(), "posts"); // 使用 process.cwd() 获取当前工作目录
 
   const readDirectory = (dir: string) => {
@@ -34,8 +41,8 @@ export async function getPosts(): Promise<Post[]> {
             minutes: readTime.minutes,
             time: readTime.time,
             readTime: readTime.text,
+            slug,
           },
-          slug,
         });
       }
     });

@@ -45,7 +45,7 @@ export default function Header() {
   );
 
   return (
-    <header className="flex select-none  justify-center gap-4 rounded-md items-center my-8">
+    <header className="flex select-none  justify-center gap-4 rounded-md items-center mb-14">
       <nav
         className="flex   shadow-slate-200
            shadow-sm items-center gap-4 rounded-md  px-4 py-2">
