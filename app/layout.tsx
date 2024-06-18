@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import Header from "@/components/Header";
-import "./globals.css";
 import ProgressBar from "@/components/ProgressBar";
 import { serif } from "@/lib/fonts";
 import { ViewTransitions } from "next-view-transitions";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
   title: "He's Blog",
@@ -21,7 +21,7 @@ export default function RootLayout({
       <html lang="en">
         <body className={serif.className}>
           <ThemeProvider attribute="class" disableTransitionOnChange={false}>
-            <div className="mx-auto max-w-2xl bg-[--bg] dark:bg-transparent dark:text-white px-5 py-12 text-[--text]">
+            <div className="max-w-[55rem]  px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6 relative z-1">
               <ProgressBar />
               <Header />
               {children}
