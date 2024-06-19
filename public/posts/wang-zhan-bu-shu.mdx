@@ -7,6 +7,8 @@ tags:
   - 问题记录
 ---
 
+![风景图](/posts/image.webp)
+
 ## 谷歌 Chrome 浏览器将自动切换为HTTPS链接 
 项目部署后，有人反映在谷歌Chrome浏览器中访问不了项目，经过调查发现最新版的谷歌浏览器中，在用户访问 http:// 开头的旧链接之后，Chrome 会尝试将其自动跳转至通过加密的 https:// 协议链接到的网站。
 而我的网站没有配置https，所以会出现这个问题。
@@ -18,7 +20,7 @@ tags:
 
 生成证书后，修改 nginx 配置如下：
 #### 
-```ssh-config {2,5-6}
+```ssh-config 
 server {
     listen 80;
     server_name xxx.xxx.xxx; // [!code focus]

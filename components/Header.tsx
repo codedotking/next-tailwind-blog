@@ -47,13 +47,11 @@ export default function Header() {
   return (
     <header className="flex select-none  justify-center gap-4 rounded-md items-center mb-14">
       <nav
-        className="flex   shadow-slate-200
-           shadow-sm items-center gap-4 rounded-md  px-4 py-2">
+        className="flex shadow-slate-200
+           shadow-sm items-center gap-16 rounded-md  px-4 py-2">
         <Link href={"/"}>
           <Image src="/logo.png" alt="logo" width={24} height={24} />
         </Link>
-        <Link href={"/category"}>分类</Link>
-        <Link href={"/tag"}>标签</Link>
         <button>{theme === "light" ? lightIcon : darkIcon}</button>
       </nav>
     </header>

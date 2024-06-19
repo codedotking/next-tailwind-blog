@@ -16,7 +16,7 @@ export interface PostDetail {
 
 export async function getPosts(): Promise<PostDetail[]> {
   const posts: PostDetail[] = [];
-  const postsDirectory = path.join(process.cwd(), "posts"); // 使用 process.cwd() 获取当前工作目录
+  const postsDirectory = path.join(process.cwd(), "public/posts"); // 使用 process.cwd() 获取当前工作目录
 
   const readDirectory = (dir: string) => {
     const files = fs.readdirSync(dir);
@@ -52,17 +52,16 @@ export async function getPosts(): Promise<PostDetail[]> {
   return posts;
 }
 
-interface PostData {
+export interface PostData {
   meta: { [key: string]: any };
   content: string;
 }
 
 export function getPost(fileName: string): PostData {
   const decodedFileName = decodeURIComponent(fileName); // 解码 URL 编码的文件名
-  const filePath = path.join(process.cwd(), "posts", decodedFileName); // 使用 process.cwd() 获取当前工作目录
+  const filePath = path.join(process.cwd(), "public/posts", decodedFileName); // 使用 process.cwd() 获取当前工作目录
   const fileData = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileData);
-
   const readTime = readingTime(content);
   return {
     content,

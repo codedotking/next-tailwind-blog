@@ -4,11 +4,13 @@ import remarkMath from "remark-math";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
+import rehypeFigure from "rehype-figure";
 import { sans } from "@/lib/fonts";
-import { getPost, getPosts } from "@/lib/posts";
+import { PostData, getPost, getPosts } from "@/lib/posts";
 import "@/styles/markdown.css";
 import "@/styles/shiki.css";
 import { cn } from "@/lib/utils";
+import NotFound from "@/app/not-found";
 
 export async function generateMetadata({
   params,
@@ -39,7 +41,12 @@ export default async function PostPage({
 }) {
   const filePath = params.slug.join("/");
   const mdxPath = `${filePath}.mdx`;
-  const post = getPost(mdxPath);
+  let post: PostData = {} as PostData;
+  try {
+    post = getPost(mdxPath);
+  } catch (e: any) {
+    return <NotFound />;
+  }
   let postComponents = {};
 
   // try {
@@ -68,7 +75,8 @@ export default async function PostPage({
           <p>预计阅读：{post.meta.readTime}</p>
         </div>
       </div>
-      <div className=" prose dark:prose-invert dark:!text-gray-300/70  max-w-full markdown">
+      
+      <div className="prose dark:prose-invert dark:!text-gray-300/70  max-w-full markdown">
         <MDXRemote
           source={post?.content || ""}
           components={{
@@ -77,10 +85,8 @@ export default async function PostPage({
           options={{
             parseFrontmatter: true,
             mdxOptions: {
-              // @ts-ignore
               remarkPlugins: [remarkMath],
               rehypePlugins: [
-                // @ts-ignore
                 rehypeKatex,
                 [
                   rehypePrettyCode,
@@ -93,6 +99,7 @@ export default async function PostPage({
                   },
                 ],
                 rehypeSlug,
+                rehypeFigure
               ],
             },
           }}

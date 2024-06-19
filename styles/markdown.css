@@ -35,6 +35,10 @@ html.dark:root {
   @apply border-[--link] text-[--link];
 }
 
+.markdown figure.rehype-figure {
+  @apply text-center;
+}
+
 /**
  * 内联代码块
  */
@@ -50,7 +54,8 @@ html.dark:root {
  * 代码块
  */
 .markdown pre {
-  @apply -mx-4 mb-8 overflow-y-auto p-4 text-sm;
+  @apply -mx-2 mb-8 overflow-y-auto p-4 text-sm;
+  /* @apply -mx-4 mb-8 overflow-y-auto p-4 text-sm; */
   clip-path: var(--path);
   border-top-right-radius: var(--radius-top);
   border-top-left-radius: var(--radius-top);

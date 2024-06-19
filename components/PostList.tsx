@@ -5,16 +5,15 @@ import { PostDetail, getPosts } from "@/lib/posts";
 
 export default async function PostList() {
   const posts = await getPosts();
-
   return (
     <div className="relative -top-[10px] flex flex-col gap-8">
-      {posts.map((item) => {
+      {posts.map((item, index) => {
         return (
           <Link
             className="block scale-100 py-4 hover:scale-[1.005] active:scale-100"
-            key={item.meta.id}
+            key={index}
             href={"/post/" + item.meta.slug + "/"}>
-            <article>
+            <article className=" flex  flex-col  gap-2">
               <PostTitle post={item} />
               <p className="text-[13px] text-gray-700 dark:text-gray-300">
                 {new Date(item.meta.date).toLocaleDateString("cn", {
@@ -47,7 +46,6 @@ function PostTitle({ post }: { post: PostDetail }) {
     today.valueOf() - new Date(post.meta.date).valueOf()
   ).valueOf();
   let staleness = timeSinceThisPost / timeSinceFirstPost;
-
   return (
     <h2
       className={[

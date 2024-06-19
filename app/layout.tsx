@@ -17,18 +17,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <body className={serif.className}>
+    <html lang="en">
+      <body className={serif.className}>
+        <ViewTransitions>
           <ThemeProvider attribute="class" disableTransitionOnChange={false}>
-            <div className="max-w-[55rem]  px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6 relative z-1">
+            <div className="max-w-[50rem]  px-4 sm:px-6 md:px-8 mx-auto mt-12 mb-6 relative z-1">
               <ProgressBar />
               <Header />
               {children}
             </div>
           </ThemeProvider>
-        </body>
-      </html>
-    </ViewTransitions>
+        </ViewTransitions>
+      </body>
+    </html>
   );
 }
