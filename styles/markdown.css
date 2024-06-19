@@ -1,3 +1,27 @@
+:root {
+  --text: #222;
+  --title: #222;
+  --bg: white;
+  --code-bg: #232936;
+  --link: #d23669;
+  --inlineCode-bg: rgba(255, 229, 100, 0.2);
+  --inlineCode-text: #1a1a1a;
+  --pink: lab(63 59.32 -1.47);
+  --purple: lab(33 42.09 -43.19);
+}
+
+html.dark:root {
+  --text: rgba(255, 255, 255, 0.88);
+  --title: white;
+  --bg: rgb(40, 44, 53);
+  --code-bg: #191d27;
+  --link: #ffa7c4;
+  --inlineCode-bg: rgba(115, 124, 153, 0.2);
+  --inlineCode-text: #e6e6e6;
+  --pink: lab(81 32.36 -7.02);
+  --purple: lab(78 19.97 -36.75);
+}
+
 .markdown {
   line-height: 28px;
   --path: none;
@@ -11,6 +35,9 @@
   @apply border-[--link] text-[--link];
 }
 
+/**
+ * 内联代码块
+ */
 .markdown :not(pre) > code {
   border-radius: 10px;
   background: var(--inlineCode-bg);
@@ -19,6 +46,9 @@
   white-space: normal;
 }
 
+/**
+ * 代码块
+ */
 .markdown pre {
   @apply -mx-4 mb-8 overflow-y-auto p-4 text-sm;
   clip-path: var(--path);
@@ -30,24 +60,9 @@
   padding-bottom: var(--padding-bottom);
 }
 
-.markdown blockquote {
-  @apply relative -left-2 -ml-4 mb-8 pl-4;
-  font-style: italic;
-  border-left: 3px solid hsla(0, 0%, 0%, 0.9);
-  border-left-color: inherit;
-  opacity: 0.8;
-}
-
-.markdown blockquote p {
-  margin: 0;
-  padding: 0;
-}
-
-.markdown img {
-  @apply mb-8;
-  max-width: 100%;
-}
-
+/**
+ * 代码行高亮
+ */
 .markdown pre [data-highlighted-line] {
   margin-left: -16px;
   padding-left: 12px;
@@ -55,4 +70,23 @@
   background-color: #022a4b;
   display: block;
   padding-right: 1em;
+}
+
+.markdown pre [data-highlighted-chars] {
+  background-color: #ffa7c4;
+}
+.markdown pre [data-highlighted-chars] span {
+  color: white !important;
+}
+
+/* 引用样式 */
+.markdown blockquote {
+  font-style: italic;
+  border-left: 3px solid hsla(0, 0%, 0%, 0.9);
+  border-left-color: inherit;
+  opacity: 0.8;
+}
+.markdown blockquote p {
+  margin: 0;
+  padding: 0;
 }

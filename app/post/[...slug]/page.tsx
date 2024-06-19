@@ -1,10 +1,13 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import rehypePrettyCode from "rehype-pretty-code";
+
 import remarkMath from "remark-math";
+import rehypePrettyCode from "rehype-pretty-code";
 import rehypeKatex from "rehype-katex";
+import rehypeSlug from "rehype-slug";
 import { sans } from "@/lib/fonts";
 import { getPost, getPosts } from "@/lib/posts";
 import "@/styles/markdown.css";
+import "@/styles/shiki.css";
 import { cn } from "@/lib/utils";
 
 export async function generateMetadata({
@@ -34,63 +37,67 @@ export default async function PostPage({
 }: {
   params: { slug: string[] };
 }) {
-  const mdxPath = `${params.slug.join("/")}.mdx`;
+  const filePath = params.slug.join("/");
+  const mdxPath = `${filePath}.mdx`;
   const post = getPost(mdxPath);
   let postComponents = {};
 
-  try {
-    postComponents = await import(
-      "../../posts/" + params.slug.join("/") + "/components.js"
-    );
-  } catch (e: any) {
-    if (!e || e.code !== "MODULE_NOT_FOUND") {
-      throw e;
-    }
-  }
+  // try {
+  //   postComponents = await import("../../posts/" + filePath + "/components.js");
+  // } catch (e: any) {
+  //   if (!e || e.code !== "MODULE_NOT_FOUND") {
+  //     throw e;
+  //   }
+  // }
 
   return (
-    <>
-      <article className=" prose  dark:prose-invert dark:!text-gray-300/70  max-w-full markdown">
-        <h2 className={cn(sans.className)}>{post.meta.title}</h2>
-        <p className="mb-6 mt-2 text-[13px] text-gray-700 dark:text-gray-300">
-          {new Date(post.meta.date).toLocaleDateString("cn", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })}
-        </p>
-        <p className="mt-2 text-[13px] text-gray-700 dark:text-gray-300">
-          字数：{post.meta.words}
-        </p>
-        <p className="mt-2 text-[13px] text-gray-700 dark:text-gray-300">
-          预计阅读时间：{post.meta.readTime}分钟
-        </p>
-        <div className="markdown">
-          <MDXRemote
-            source={post?.content || ""}
-            components={{
-              ...postComponents,
-            }}
-            options={{
-              parseFrontmatter: true,
-              mdxOptions: {
-                // @ts-ignore
-                remarkPlugins: [remarkMath],
-                rehypePlugins: [
-                  // @ts-ignore
-                  rehypeKatex,
-                  [
-                    rehypePrettyCode,
-                    {
-                      theme: "one-dark-pro",
-                    },
-                  ],
-                ],
-              },
-            }}
-          />
+    <article className=" ">
+      <div className="">
+        <h2 className={cn(sans.className, " text-3xl dark:text-white")}>
+          {post.meta.title}
+        </h2>
+        <div className=" flex gap-4 text-gray-700 dark:text-gray-300 text-[13px] mb-6 mt-2">
+          <p>
+            {new Date(post.meta.date).toLocaleDateString("cn", {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+            })}
+          </p>
+          <p>字数：{post.meta.words}</p>
+          <p>预计阅读：{post.meta.readTime}</p>
         </div>
-      </article>
-    </>
+      </div>
+      <div className=" prose dark:prose-invert dark:!text-gray-300/70  max-w-full markdown">
+        <MDXRemote
+          source={post?.content || ""}
+          components={{
+            ...postComponents,
+          }}
+          options={{
+            parseFrontmatter: true,
+            mdxOptions: {
+              // @ts-ignore
+              remarkPlugins: [remarkMath],
+              rehypePlugins: [
+                // @ts-ignore
+                rehypeKatex,
+                [
+                  rehypePrettyCode,
+                  {
+                    themes: {
+                      default: "github-dark",
+                      dark: "slack-dark",
+                      light: "github-light",
+                    },
+                  },
+                ],
+                rehypeSlug,
+              ],
+            },
+          }}
+        />
+      </div>
+    </article>
   );
 }

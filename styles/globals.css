@@ -2,72 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-html.dark .shiki,
-html.dark .code-block,
-html.dark .shiki span {
-  color: var(--shiki-dark) !important;
-  background-color: var(--shiki-dark-bg) !important;
-  /* 可选，用于定义字体样式 */
-  font-style: var(--shiki-dark-font-style) !important;
-  font-weight: var(--shiki-dark-font-weight) !important;
-  text-decoration: var(--shiki-dark-text-decoration) !important;
-}
-
-*::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-*::-webkit-scrollbar-thumb {
-  border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  background-color: #c3c3c3;
-}
-*::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --text: #222;
-  --title: #222;
-  --bg: white;
-  --code-bg: #232936;
-  --link: #d23669;
-  --inlineCode-bg: rgba(255, 229, 100, 0.2);
-  --inlineCode-text: #1a1a1a;
-  --pink: lab(63 59.32 -1.47);
-  --purple: lab(33 42.09 -43.19);
-}
-
-html.dark:root {
-  --text: rgba(255, 255, 255, 0.88);
-  --title: white;
-  --bg: rgb(40, 44, 53);
-  --code-bg: #191d27;
-  --link: #ffa7c4;
-  --inlineCode-bg: rgba(115, 124, 153, 0.2);
-  --inlineCode-text: #e6e6e6;
-  --pink: lab(81 32.36 -7.02);
-  --purple: lab(78 19.97 -36.75);
-}
-
-html.dark {
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-}
-
 @media (prefers-reduced-motion) {
   * {
     transition: none !important;
     transform: none !important;
   }
 }
+
+@layer base {
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    background-color: #c3c3c3;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  html.dark {
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

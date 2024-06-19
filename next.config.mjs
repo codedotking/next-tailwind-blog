@@ -1,13 +1,9 @@
-import mdx from '@next/mdx';
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    sassOptions: {
-        includePaths: ["./"],
-    },
-    pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  output: "export",
+  // Configure `pageExtensions` to include MDX files
+  // Optionally, add any other Next.js config below
 };
 
 // Import the MDX plugin
-const withMDX = mdx();
-export default withMDX(nextConfig);
+export default nextConfig;
