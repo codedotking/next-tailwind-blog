@@ -1,15 +1,34 @@
 ---
-title: 测试
-description: 测试
+title: 代码块功能展示
+description: 代码块功能展示
 date: "2023-01-02"
 tags:
-  - 测试
+  - 代码块功能展示
 ---
-#### 
-```js 
-// [!code highlight:3]
+
+### 代码块文件名
+```js  title="@/components/PostList"
 import BlogList from "@/components/PostList";
-export default async function Home() {
+export default async function Home() { // [!code highlight]
+  return <BlogList />;
+}
+```
+
+### 代码块跨行高亮
+
+```js  {1,3-4} 
+import BlogList from "@/components/PostList";
+export default async function Home() { // [!code focus]
+  return <BlogList />;
+}
+```
+
+
+### 代码块高亮关键词
+
+```js  /BlogList/#s
+import BlogList from "@/components/PostList";
+export default async function Home() { // [!code focus]
   return <BlogList />;
 }
 ```
