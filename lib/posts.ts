@@ -49,6 +49,9 @@ export async function getPosts(): Promise<PostDetail[]> {
   };
 
   readDirectory(postsDirectory);
+
+
+  posts.sort((a, b) => (a.meta.date > b.meta.date ? -1 : 1));
   return posts;
 }
 
