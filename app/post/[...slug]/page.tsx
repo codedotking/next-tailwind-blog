@@ -1,16 +1,12 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
 
-import remarkMath from "remark-math";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeKatex from "rehype-katex";
-import rehypeSlug from "rehype-slug";
-import rehypeFigure from "rehype-figure";
 import { sans } from "@/lib/fonts";
 import { PostData, getPost, getPosts } from "@/lib/posts";
 import "@/styles/markdown.css";
 import "@/styles/shiki.css";
 import { cn } from "@/lib/utils";
 import NotFound from "@/app/not-found";
+import mdxOptions from "@/lib/mdx-options";
 
 export async function generateMetadata({
   params,
@@ -57,6 +53,9 @@ export default async function PostPage({
   //   }
   // }
 
+
+
+
   return (
     <article className=" ">
       <div className="">
@@ -75,8 +74,8 @@ export default async function PostPage({
           <p>预计阅读：{post.meta.readTime}</p>
         </div>
       </div>
-      
-      <div className="prose dark:prose-invert dark:!text-gray-300/70  max-w-full markdown">
+
+      <div className="prose dark:prose-invert dark:!text-white   max-w-full markdown">
         <MDXRemote
           source={post?.content || ""}
           components={{
@@ -84,24 +83,7 @@ export default async function PostPage({
           }}
           options={{
             parseFrontmatter: true,
-            mdxOptions: {
-              remarkPlugins: [remarkMath],
-              rehypePlugins: [
-                rehypeKatex,
-                [
-                  rehypePrettyCode,
-                  {
-                    themes: {
-                      default: "github-dark",
-                      dark: "slack-dark",
-                      light: "github-light",
-                    },
-                  },
-                ],
-                rehypeSlug,
-                rehypeFigure
-              ],
-            },
+            mdxOptions
           }}
         />
       </div>
