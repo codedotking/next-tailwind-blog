@@ -2,4 +2,4 @@
 
 [Nextjs](https://nextjs.org/) + [tailwindcss](https://tailwindcss.com/) 
 
-https://blog.huala.fun
+preview  https://blog.huala.fun
