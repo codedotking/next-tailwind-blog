@@ -31,7 +31,7 @@ export default async function PostList() {
   );
 }
 
-function PostTitle({ post }: { post: PostDetail }) {
+const PostTitle = ({ post }: { post: PostDetail }) =>{
   let lightStart = new Color("lab(63 59.32 -1.47)");
   let lightEnd = new Color("lab(33 42.09 -43.19)");
   let lightRange = lightStart.range(lightEnd);
