@@ -1,4 +1,4 @@
-##  Next-Tailwind-Blog
+##    Next-Tailwind-Blog
 
 [Nextjs](https://nextjs.org/) + [tailwindcss](https://tailwindcss.com/) 
 
